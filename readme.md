@@ -13,7 +13,13 @@ Our customers can order any number of these items through our website, but they 
 3. Within the constraints of Rules 1 & 2 above, send out as few packs as possible to fulfil each order. 
 
 Write an application that can calculate the number of packs we need to ship to the customer. 
-The API must be written in Golang & be usable by a HTTP API (by whichever method you choose). 
+The API must be written in Golang & be usable by a HTTP API (by whichever method you choose).  
+
 Optional:  
 Keep your application flexible so that pack sizes can be changed and added and removed without having to change the code. 
 Create a UI to interact with your API 
+
+# Testing
+
+You can test it at this url:  
+[http://http://159.223.212.53:8005/](http://http://159.223.212.53:8005/)
