@@ -1,4 +1,4 @@
-package packstore_test
+package store_test
 
 import (
 	"testing"

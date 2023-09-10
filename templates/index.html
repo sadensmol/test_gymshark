@@ -1,0 +1,64 @@
+<html>
+
+<head>
+
+    <style>
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+    </style>
+    <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+</head>
+
+<body>
+    <div class="center">
+        <div>
+            <div>
+                available packs:
+            </div>
+
+            <table id="packs-list" class="center">
+                <tr>
+                    <th>size</th>
+                    <th></th>
+                </tr>
+                {{range .}}
+                <tr id="packs-list-{{.Size}}">
+                    <td>
+                        {{.Size}}
+                    </td>
+                    <td>
+                        <p>
+                            <button style="width: 40px;" hx-delete="/pack?s={{.Size}}"
+                                hx-target="#packs-list-{{.Size}}" hx-swap="delete">del</button>
+                        </p>
+                    </td>
+                </tr>
+                {{end}}
+            </table id="tablec">
+
+        </div>
+        <div>
+            <form hx-post="/pack" hx-target="#packs-list" hx-swap="beforeend">
+                <input type="text" name="size" />
+                <button type="submit">add</button>
+            </form>
+
+        </div>
+        <div style="padding-top: 20px;">
+            <div>
+                how many items do you want to buy?
+            </div>
+
+            <form hx-post="/buy" hx-target="#buy-result" hx-swap="innerHTML">
+                <input type="text" name="num" />
+                <button type="submit">buy</button>
+            </form>
+            <div id="buy-result"/>
+        </div>
+    </div>
+</body>
+
+</html>

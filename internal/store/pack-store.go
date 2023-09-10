@@ -1,8 +1,9 @@
-package packstore
+package store
 
 import (
 	"sync"
 
+	"github.com/elliotchance/pie/v2"
 	"github.com/sadensmol/test_gymshark/internal/domain"
 )
 
@@ -28,6 +29,14 @@ func (ps *PackStore) AddPack(size int) error {
 	ps.mutex.Lock()
 	defer ps.mutex.Unlock()
 	ps.packs = append(ps.packs, domain.Pack{Size: size})
+	ps.packs = pie.Unique[domain.Pack](ps.packs)
+	return nil
+}
+
+func (ps *PackStore) RemoveBySize(size int) error {
+	ps.mutex.Lock()
+	defer ps.mutex.Unlock()
+	ps.packs = pie.Filter[domain.Pack](ps.packs, func(p domain.Pack) bool { return p.Size != size })
 	return nil
 }
 
