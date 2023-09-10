@@ -22,4 +22,4 @@ Create a UI to interact with your API
 # Testing
 
 You can test it at this url:  
-[http://http://159.223.212.53:8005/](http://http://159.223.212.53:8005/)
+[http://159.223.212.53:8005/](http://159.223.212.53:8005/)
