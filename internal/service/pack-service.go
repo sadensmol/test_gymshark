@@ -51,7 +51,7 @@ func (ps *PackService) PackItems(numberOfItems int) (domain.Packs, error) {
 	recSearch = func(index int, totalSize int, packs domain.Packs) {
 		diff := totalSize - numberOfItems
 		if diff >= 0 && (result == nil || diff < minDiff) {
-			result = packs
+			result = append(domain.Packs{}, packs...)
 			minDiff = diff
 		}
 

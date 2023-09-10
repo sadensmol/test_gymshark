@@ -18,33 +18,33 @@ func TestPackService_PackItems(t *testing.T) {
 	tests := []struct {
 		name          string
 		numberOfItems int
-		expectedPacks []domain.Pack
+		expectedPacks domain.Packs
 	}{
 		{
 			name:          "1 item packs into one 250-size pack",
 			numberOfItems: 1,
-			expectedPacks: []domain.Pack{
+			expectedPacks: domain.Packs{
 				{Size: 250},
 			},
 		},
 		{
 			name:          "250 items packs into one 250-size pack",
 			numberOfItems: 250,
-			expectedPacks: []domain.Pack{
+			expectedPacks: domain.Packs{
 				{Size: 250},
 			},
 		},
 		{
 			name:          "251 items packs into one 500-size pack",
 			numberOfItems: 251,
-			expectedPacks: []domain.Pack{
+			expectedPacks: domain.Packs{
 				{Size: 500},
 			},
 		},
 		{
 			name:          "501 items packs into two 500-size and 250-size packs",
 			numberOfItems: 501,
-			expectedPacks: []domain.Pack{
+			expectedPacks: domain.Packs{
 				{Size: 500},
 				{Size: 250},
 			},
@@ -52,11 +52,27 @@ func TestPackService_PackItems(t *testing.T) {
 		{
 			name:          "12001 items packs into three 5000-size, 2000-size and 250-size packs",
 			numberOfItems: 12001,
-			expectedPacks: []domain.Pack{
+			expectedPacks: domain.Packs{
 				{Size: 5000},
 				{Size: 5000},
 				{Size: 2000},
 				{Size: 250},
+			},
+		},
+		{
+			name:          "50000 items packs into 10 5000-size packs",
+			numberOfItems: 50000,
+			expectedPacks: domain.Packs{
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
+				{Size: 5000},
 			},
 		},
 	}

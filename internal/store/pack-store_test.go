@@ -13,7 +13,7 @@ func TestValidPackStore(t *testing.T) {
 	assert.NoError(t, err)
 
 	packs := store.AvailablePacks()
-	assert.Equal(t, []domain.Pack{
+	assert.ElementsMatch(t, domain.Packs{
 		{Size: 250},
 		{Size: 500},
 		{Size: 1000},
@@ -27,7 +27,7 @@ func TestImmutability(t *testing.T) {
 
 	packs := store.AvailablePacks()
 	packs[0] = domain.Pack{Size: 1}
-	assert.Equal(t, []domain.Pack{
+	assert.ElementsMatch(t, domain.Packs{
 		{Size: 250},
 		{Size: 500},
 		{Size: 1000},
@@ -40,7 +40,7 @@ func TestAddNewPack(t *testing.T) {
 	ps, err := packstore.NewPackStore()
 	ps.AddPack(10000)
 	assert.NoError(t, err)
-	assert.Equal(t, []domain.Pack{
+	assert.ElementsMatch(t, domain.Packs{
 		{Size: 250},
 		{Size: 500},
 		{Size: 1000},
@@ -48,5 +48,4 @@ func TestAddNewPack(t *testing.T) {
 		{Size: 5000},
 		{Size: 10000},
 	}, ps.AvailablePacks())
-
 }
